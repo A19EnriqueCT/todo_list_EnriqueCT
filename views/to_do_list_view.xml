@@ -7,7 +7,7 @@
 			<field name="inherit_id" ref="mail.view_mail_form"/>
 			<field name="arch" type="xml">
 				<field name="recurring" position="after">
-					<field name="activity_mode"></field>
+					<field name="activity_mode"/>
 				</field>
 			</field>
 		</record>
