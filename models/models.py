@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 
-# from odoo import models, fields, api
+from odoo import models, fields, api
 
+class MailActivity(models.Model):
+    _inherit = 'mail.activity'
 
-# class todolist_enrique_ct(models.Model):
-#     _name = 'todolist_enrique_ct.todolist_enrique_ct'
-#     _description = 'todolist_enrique_ct.todolist_enrique_ct'
-
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
+    activity_mode = fields.Selection(
+        string="Activity Mode",
+        selection=[
+            ('list_executable', "List: Executable"),
+            ('list_incubator', "List: Incubator"),
+            ('tickler_file_short_term', "Tickler File: Short Term"),
+            ('tickler_file_long_term', "Tickler File: Long Term"),
+            ('tickler_file_recurring_tasks', "Tickler File: Recurring Tasks"),
+    ]
+    )
