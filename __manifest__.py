@@ -23,6 +23,6 @@
 
     # always loaded
     'data': [
-        "views/todo_list.action_todo_form.xml"
+        "views/todo_list_action_todo_form.xml"
     ],
 }

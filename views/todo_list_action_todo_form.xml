@@ -4,7 +4,7 @@
 		<record id="action_todo_form" model="ir.ui.view">
 			<field name="name">mail.activity.form.activity.mode</field>
 			<field name="model">mail.activity</field>
-			<field name="inherit_id" ref="mail.view_mail_form"/>
+			<field name="inherit_id" ref="todo_list.action_todo_form"/>
 			<field name="arch" type="xml">
 				<field name="recurring" position="after">
 					<field name="activity_mode"/>
