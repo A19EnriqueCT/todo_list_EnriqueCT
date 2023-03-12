@@ -2,9 +2,9 @@
 <odoo>
 	<data noupdate="0">
 		<record id="view_mail_form" model="ir.ui.view">
-			<field name="name">view.inherit..form</field>
-			<field name="model"></field>
-			<field name="inherit_id" ref=""/>
+			<field name="name">mail.activity.form.activity.mode</field>
+			<field name="model">mail.activity</field>
+			<field name="inherit_id" ref="mail.view_mail_form"/>
 			<field name="arch" type="xml">
 				<field name="recurring" position="after">
 					<field name="activity_mode"></field>
