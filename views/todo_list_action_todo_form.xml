@@ -11,5 +11,10 @@
 				</field>
 			</field>
 		</record>
+
+		<menuitem id="config_activity_gtd"
+                  name="Activity GTD"
+                  parent="list_menu"
+                  action="mail_activity_type"/>
 	</data>
 </odoo>
