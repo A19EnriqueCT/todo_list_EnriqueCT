@@ -20,6 +20,9 @@
 
     # always loaded
     'data': [
+        'data/recurring.xml',
+        'data/general.xml',
+        'security/ir.model.access.csv',
         "views/todo_list_enrique.xml"
     ],
 }

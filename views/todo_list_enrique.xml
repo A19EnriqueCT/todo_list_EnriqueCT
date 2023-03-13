@@ -150,7 +150,7 @@
                             <group>
                                 <field name="date_deadline"/>
                                 <field name="recurring"/>
-								<field name="activity_mode"/>
+								<field name="activity_gtd"/>
                                 <field name="interval"
                                        attrs="{'invisible': [('recurring','!=',True)],
                                         'required': [('recurring', '=', True)]}"/>
