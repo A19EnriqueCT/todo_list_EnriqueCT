@@ -15,6 +15,6 @@
 		<menuitem id="todo_list.config_activity_types"
                   name="Activity GTD"
                   parent="todo_list.list_menu"
-                  action="mail_activity_type"/>
+                  action="todo_list.mail_activity_type"/>
 	</data>
 </odoo>
