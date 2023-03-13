@@ -12,7 +12,7 @@
 			</field>
 		</record>
 
-		<menuitem id="config_activity_gtd"
+		<menuitem id="todo_list.config_activity_types"
                   name="Activity GTD"
                   parent="todo_list.list_menu"
                   action="mail_activity_type"/>
