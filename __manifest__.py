@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "todolistEnriqueCT",
+    'name': "todolistGTD",
 
     'summary': """
         Módulo que complementa todolist con otras funcionalidades.""",
@@ -23,6 +23,6 @@
 
     # always loaded
     'data': [
-        "views/todo_list_action_todo_form.xml"
+        "views/todo_list_enrique.xml"
     ],
 }

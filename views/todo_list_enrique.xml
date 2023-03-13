@@ -212,7 +212,7 @@
         </record>
 
         <!--menuitem-->
-        <menuitem id="list_menu" name="To Do" sequence="10"/>
+        <menuitem id="list_menu" name="To Do GTD" sequence="10"/>
         <menuitem id="todo_menu" name="Activities"
                   parent="list_menu" sequence="5"/>
         <menuitem id="activity_menu" parent="list_menu"
@@ -221,7 +221,6 @@
                   name="Activity Types"
                   parent="list_menu"
                   action="mail_activity_type"/>
-
 		<menuitem id="todo_list.config_activity_types"
                   name="Activity GTD"
                   parent="todo_list.list_menu"
