@@ -2,7 +2,7 @@
 <odoo>
 	<data noupdate="0">
         <!--search views-->
-        <record id='todo_list.mail_activity_model_view_search'
+        <record id='todo_list_EnriqueCT.mail_activity_model_view_search'
                 model='ir.ui.view'>
             <field name="name">mail.activity.model.search</field>
             <field name="model">mail.activity</field>
@@ -39,7 +39,7 @@
         </record>
 
         <!--kanban views-->
-        <record id="todo_list.action_todo_kanban" model="ir.ui.view">
+        <record id="todo_list_EnriqueCT.action_todo_kanban" model="ir.ui.view">
             <field name="name">mail.activity.kanban.inherit</field>
             <field name="model">mail.activity</field>
             <field name="arch" type="xml">
@@ -96,7 +96,7 @@
             </field>
         </record>
         <!--tree view for mail activity-->
-        <record id="todo_list.action_todo_tree" model="ir.ui.view">
+        <record id="todo_list_EnriqueCT.action_todo_tree" model="ir.ui.view">
             <field name="name">mail.activity.tree</field>
             <field name="model">mail.activity</field>
             <field name="arch" type="xml">
@@ -118,7 +118,7 @@
         </record>
 
         <!--form view for  mail activity-->
-        <record id="todo_list.action_todo_form" model="ir.ui.view">
+        <record id="todo_list_EnriqueCT.action_todo_form" model="ir.ui.view">
             <field name="name">mail.activity.form</field>
             <field name="model">mail.activity</field>
             <field name="arch" type="xml">
@@ -174,35 +174,34 @@
             <field name="res_model">mail.activity</field>
             <field name="view_mode">kanban,tree,form</field>
             <field name="context"
-                   eval="{'default_res_model_id': ref('todo_list.model_activity_general')}"/>
+                   eval="{'default_res_model_id': ref('todo_list_EnriqueCT.model_activity_general')}"/>
             <field name="search_view_id"
-                   ref="todo_list.mail_activity_model_view_search"/>
+                   ref="todo_list_EnriqueCT.mail_activity_model_view_search"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create your ToDo List
                 </p>
             </field>
         </record>
-        <record id="todo_list_action_view_kanban"
+        <record id="todo_list_EnriqueCT_action_view_kanban"
                 model="ir.actions.act_window.view">
             <field name="sequence" eval="1"/>
             <field name="view_mode">kanban</field>
-            <field name="view_id" ref="todo_list.action_todo_kanban"/>
+            <field name="view_id" ref="todo_list_EnriqueCT.action_todo_kanban"/>
             <field name="act_window_id" ref="action_activity"/>
         </record>
-
-        <record id="todo_list_action_view_tree"
+        <record id="todo_list_EnriqueCT_action_view_tree"
                 model="ir.actions.act_window.view">
             <field name="sequence" eval="2"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="todo_list.action_todo_tree"/>
+            <field name="view_id" ref="todo_list_EnriqueCT.action_todo_tree"/>
             <field name="act_window_id" ref="action_activity"/>
         </record>
-        <record id="todo_list_action_view_form"
+        <record id="todo_list_EnriqueCT_action_view_form"
                 model="ir.actions.act_window.view">
             <field name="sequence" eval="3"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="todo_list.action_todo_form"/>
+            <field name="view_id" ref="todo_list_EnriqueCT.action_todo_form"/>
             <field name="act_window_id" ref="action_activity"/>
         </record>
         <record id="mail_activity_type" model="ir.actions.act_window">
@@ -221,9 +220,9 @@
                   name="Activity Types"
                   parent="list_menu"
                   action="mail_activity_type"/>
-		<menuitem id="todo_list.config_activity_types"
+		<menuitem id="config_activity_gtd"
                   name="Activity GTD"
-                  parent="todo_list.list_menu"
-                  action="todo_list.mail_activity_type"/>
+                  parent="list_menu"
+                  action="mail_activity_type"/>
 	</data>
 </odoo>

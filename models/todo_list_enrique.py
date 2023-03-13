@@ -20,11 +20,11 @@ class MailActivity(models.Model):
     res_model_id = fields.Many2one(
         'ir.model', 'Document Model',
         index=True, ondelete='cascade', required=True,
-        default=lambda self: self.env.ref('todo_list.model_activity_general'))
+        default=lambda self: self.env.ref('todo_list_EnriqueCT.model_activity_general'))
     res_id = fields.Many2oneReference(string='Related Document ID', index=True,
                                       required=True, model_field='res_model',
                                       default=lambda self: self.env.ref(
-                                          'todo_list.general_activities'))
+                                          'todo_list_EnriqueCT.general_activities'))
     priority = fields.Selection([
         ('0', 'Normal'),
         ('1', 'Important'),
@@ -32,8 +32,8 @@ class MailActivity(models.Model):
         ('3', 'Urgent'),
     ], default='0', index=True, store=True)
     recurring = fields.Boolean(string="Recurring", store=True)
-    activity_mode = fields.Selection(
-        string="Activity Mode",
+    activity_gtd = fields.Selection(
+        string="Activity GTD",
         selection=[
             ('list_executable', "List: Executable"),
             ('list_incubator', "List: Incubator"),
@@ -69,6 +69,7 @@ class MailActivity(models.Model):
                 'priority': self.priority,
                 'date_deadline': self.new_date,
                 'recurring': self.recurring,
+                'activity_gtd': self.activity_gtd,
                 'interval': self.interval,
                 'activity_type_id': self.activity_type_id.id,
                 'new_date': self.get_date(),
@@ -123,6 +124,7 @@ class MailActivity(models.Model):
                  'priority': rec.priority,
                  'interval': rec.interval,
                  'recurring': rec.recurring,
+                 'activity gtd': rec.activity_gtd,
                  'date_deadline': rec.new_date,
                  'new_date': rec.get_date(),
                  'activity_type_id': rec.activity_type_id.id,
