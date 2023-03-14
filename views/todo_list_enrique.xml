@@ -151,10 +151,10 @@
                                 <field name="date_deadline"/>
 								<field name="activity_gtd"/>
                                 <field name="interval"
-                                       attrs="{'invisible': [('activity_gtd','!=','Tickler File: Recurring')],
-                                        'required': [('activity_gtd', '=', 'Tickler File: Recurring')]}"/>
+                                       attrs="{'invisible': [('activity_gtd','!=','Tickler File: Recurring Tasks')],
+                                        'required': [('activity_gtd', '=', 'Tickler File: Recurring Tasks')]}"/>
                                 <field name="new_date"
-                                       attrs="{'invisible': [('activity_gtd','!=','Tickler File: Recurring')]}"/>
+                                       attrs="{'invisible': [('activity_gtd','!=','Tickler File: Recurring Tasks')]}"/>
                             </group>
                         </group>
                         <field name="note" placeholder="Log a note..."/>
