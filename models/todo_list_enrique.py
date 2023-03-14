@@ -13,8 +13,8 @@ class MailActivity(models.Model):
     _inherit = ['mail.activity', 'mail.thread']
     _rec_name = 'summary'
 
-    date_deadline = fields.Date('Due Date', index=True, required=True,
-                                default=fields.Date.context_today, store=True)
+    date_deadline = fields.Datetime('Due Date', index=True, required=True,
+                                default=fields.Datetime.context_today, store=True)
     user_id = fields.Many2one('res.users', string='user', index=True,
                               tracking=True, default=lambda self: self.env.user)
     res_model_id = fields.Many2one(
@@ -30,8 +30,7 @@ class MailActivity(models.Model):
         ('1', 'Important'),
         ('2', 'Very Important'),
         ('3', 'Urgent'),
-    ], default='0', index=True, store=True)
-    recurring = fields.Boolean(string="Recurring", store=True)
+    ], default='0', index=True, store=True),
     activity_gtd = fields.Selection(
         string="Activity GTD",
         selection=[
