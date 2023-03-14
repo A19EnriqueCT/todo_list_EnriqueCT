@@ -38,9 +38,7 @@ class MailActivity(models.Model):
             ('list_incubator', "List: Incubator"),
             ('tickler_file_short_term', "Tickler File: Short Term"),
             ('tickler_file_long_term', "Tickler File: Long Term"),
-            ('tickler_file_recurring_tasks', "Tickler File: Recurring Tasks"),
-    ]
-    )
+            ('tickler_file_recurring_tasks', "Tickler File: Recurring Tasks")])
     state = fields.Selection([
         ('today', 'Today'),
         ('planned', 'Planned'),
