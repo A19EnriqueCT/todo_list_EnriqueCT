@@ -170,7 +170,7 @@
         </record>
         <!--action mail activity-->
         <record id="action_activity" model="ir.actions.act_window">
-            <field name="name">Activity</field>
+            <field name="name">Actividad</field>
             <field name="res_model">mail.activity</field>
             <field name="view_mode">kanban,tree,form</field>
             <field name="context"
@@ -179,7 +179,7 @@
                    ref="todo_list_EnriqueCT.mail_activity_model_view_search"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Create your ToDo List
+                    Crea tu todo list bajo el modelo GTD
                 </p>
             </field>
         </record>
@@ -205,43 +205,43 @@
             <field name="act_window_id" ref="action_activity"/>
         </record>
         <record id="mail_activity_type" model="ir.actions.act_window">
-            <field name="name">Activity Types</field>
+            <field name="name">Tipos de Actividades</field>
             <field name="res_model">mail.activity.type</field>
             <field name="view_mode">tree,form</field>
         </record>
 
         <!--menuitem-->
         <menuitem id="list_menu" name="To Do GTD" sequence="10"/>
-        <menuitem id="todo_menu" name="Activities"
+        <menuitem id="todo_menu" name="Actividades"
                   parent="list_menu" sequence="5"/>
         <menuitem id="activity_menu" parent="list_menu"
-                  name="Activities" action="action_activity" sequence="6"/>
+                  name="Actividades" action="action_activity" sequence="6"/>
         <menuitem id="config_activity_types"
-                  name="Activity Types"
+                  name="Tipos de Actividades"
                   parent="list_menu"
-                  action="mail_activity_type" sequence="6"/>
+                  action="mail_activity_type"/>
 		<menuitem id="config_activity_gtd"
-                  name="Activity GTD"
+                  name="Actividades GTD"
                   parent="list_menu"
                   action="mail_activity_type"/>
         <menuitem id="executable_activity_gtd"
-                  name="List: Executable"
+                  name="Lista: Ejecutable"
                   parent="config_activity_gtd"
                   action="mail_activity_type"/>
         <menuitem id="incubator_activity_gtd"
-                  name="List: Incubator"
+                  name="Lista: Incubadora"
                   parent="config_activity_gtd"
                   action="mail_activity_type"/>
         <menuitem id="tickler_file_short_term_activity_gtd"
-                  name="Tickler File: Short Term"
+                  name="Tickler File: Corto Plazo"
                   parent="config_activity_gtd"
                   action="mail_activity_type"/>
         <menuitem id="tickler_file_long_term_activity_gtd"
-                  name="Tickler File: Long Term"
+                  name="Tickler File: Largo Plazo"
                   parent="config_activity_gtd"
                   action="mail_activity_type"/>
         <menuitem id="tickler_file_recurring_activity_gtd"
-                  name="Tickler File: Recurring"
+                  name="Tickler File: Recurrente"
                   parent="config_activity_gtd"
                   action="mail_activity_type"/>
 	</data>
