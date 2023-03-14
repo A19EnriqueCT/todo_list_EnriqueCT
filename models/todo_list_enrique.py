@@ -11,7 +11,7 @@ from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 class MailActivity(models.Model):
     _name = 'mail.activity'
     _inherit = ['mail.activity', 'mail.thread']
-    _rec_name = 'title'
+    _rec_name = 'summary'
 
     date_deadline = fields.Date('Due Date', index=True, required=True,
                                 default=fields.Date.context_today, store=True)
@@ -65,7 +65,7 @@ class MailActivity(models.Model):
             self.env['mail.activity'].create({
                 'res_id': self.res_id,
                 'res_model_id': self.res_model_id.id,
-                'title': self.title,
+                'summary': self.summary,
                 'priority': self.priority,
                 'date_deadline': self.new_date,
                 'recurring': self.recurring,
@@ -106,7 +106,7 @@ class MailActivity(models.Model):
     def onchange_recurring(self):
         """ function for show new due date"""
         self.new_date = False
-        if self.recurring:
+        if self.activity_gtd=='tickler_file_recurring_tasks':
             self.new_date = self.get_date()
 
     def action_date(self):
@@ -114,16 +114,15 @@ class MailActivity(models.Model):
         today = fields.date.today()
         dates = self.env['mail.activity'].search(
             [('state', 'in', ['today', 'planned']),
-             ('date_deadline', '=', today),
-             ('recurring', '=', True)])
+             ('activity_gtd', '=', 'tickler_file_recurring_tasks'),
+             ('date_deadline', '=', today)])
         for rec in dates:
             self.env['mail.activity'].create(
                 {'res_id': rec.res_id,
                  'res_model_id': rec.res_model_id.id,
-                 'title': rec.title,
+                 'summary': rec.summary,
                  'priority': rec.priority,
                  'interval': rec.interval,
-                 'recurring': rec.recurring,
                  'activity gtd': rec.activity_gtd,
                  'date_deadline': rec.new_date,
                  'new_date': rec.get_date(),

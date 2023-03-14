@@ -140,7 +140,7 @@
                                        class="mr-3"/>
                                 <field name="activity_type_id"/>
                                 <field name="user_id" invisible="1"/>
-                                <field name="title"
+                                <field name="summary"
                                        placeholder="ej. Debatir una propuesta"/>
                                 <field name="res_id" invisible="1"/>
                                 <field name="res_model" invisible="1"/>
