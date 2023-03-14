@@ -11,7 +11,7 @@ from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 class MailActivity(models.Model):
     _name = 'mail.activity'
     _inherit = ['mail.activity', 'mail.thread']
-    _rec_name = 'summary'
+    _rec_name = 'title'
 
     date_deadline = fields.Date('Due Date', index=True, required=True,
                                 default=fields.Date.context_today, store=True)
@@ -65,7 +65,7 @@ class MailActivity(models.Model):
             self.env['mail.activity'].create({
                 'res_id': self.res_id,
                 'res_model_id': self.res_model_id.id,
-                'summary': self.summary,
+                'title': self.title,
                 'priority': self.priority,
                 'date_deadline': self.new_date,
                 'recurring': self.recurring,
@@ -120,7 +120,7 @@ class MailActivity(models.Model):
             self.env['mail.activity'].create(
                 {'res_id': rec.res_id,
                  'res_model_id': rec.res_model_id.id,
-                 'summary': rec.summary,
+                 'title': rec.title,
                  'priority': rec.priority,
                  'interval': rec.interval,
                  'recurring': rec.recurring,
