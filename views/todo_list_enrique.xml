@@ -151,12 +151,12 @@
                                 <field name="date_deadline"/>
 								<field name="activity_gtd"/>
                                 <field name="interval"
-                                       attrs="{'invisible': ['|', ('activity_gtd','in', ['tickler_file_recurring_tasks'])]}"/>
+                                       attrs="{'invisible': [('activity_gtd','=','tickler_file_recurring_tasks')]}"/>
                                 <field name="new_date"
-                                       attrs="{'invisible': ['|', ('activity_gtd','in', ['tickler_file_recurring_tasks'])]}"/>
+                                       attrs="{'invisible': [('activity_gtd','=','tickler_file_recurring_tasks')]}"/>
                             </group>
                         </group>
-                        <field name="note" placeholder="Log a note..."/>
+                        <field name="note" placeholder="Registrar una nota..."/>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids"
