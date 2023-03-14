@@ -151,9 +151,9 @@
                                 <field name="date_deadline"/>
 								<field name="activity_gtd"/>
                                 <field name="interval"
-                                       attrs="{'invisible': ['|', ('activity_gtd','in', ['tickler_file_recurring_tasks']), ('activity_gtd','in', ['list_executable', 'list_incubator', 'tickler_file_short_term', 'tickler_file_long_term'])]}"/>
+                                       attrs="{'invisible': ['|', ('activity_gtd','in', ['tickler_file_recurring_tasks'])]}"/>
                                 <field name="new_date"
-                                       attrs="{'invisible': ['|', ('activity_gtd','in', ['tickler_file_recurring_tasks']), ('activity_gtd','in', ['list_executable', 'list_incubator', 'tickler_file_short_term', 'tickler_file_long_term'])}"/>
+                                       attrs="{'invisible': ['|', ('activity_gtd','in', ['tickler_file_recurring_tasks'])]}"/>
                             </group>
                         </group>
                         <field name="note" placeholder="Log a note..."/>
