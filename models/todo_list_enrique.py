@@ -14,7 +14,7 @@ class MailActivity(models.Model):
     _rec_name = 'summary'
 
     date_deadline = fields.Datetime('Due Date', index=True, required=True,
-                                default=fields.Datetime.context_today, store=True)
+                                default=fields.Datetime.context_now, store=True)
     user_id = fields.Many2one('res.users', string='user', index=True,
                               tracking=True, default=lambda self: self.env.user)
     res_model_id = fields.Many2one(
