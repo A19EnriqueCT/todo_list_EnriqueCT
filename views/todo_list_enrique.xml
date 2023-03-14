@@ -219,10 +219,30 @@
         <menuitem id="config_activity_types"
                   name="Activity Types"
                   parent="list_menu"
-                  action="mail_activity_type"/>
+                  action="mail_activity_type" sequence="6"/>
 		<menuitem id="config_activity_gtd"
                   name="Activity GTD"
                   parent="list_menu"
+                  action="mail_activity_type"/>
+        <menuitem id="executable_activity_gtd"
+                  name="List: Executable"
+                  parent="config_activity_gtd"
+                  action="mail_activity_type"/>
+        <menuitem id="incubator_activity_gtd"
+                  name="List: Incubator"
+                  parent="config_activity_gtd"
+                  action="mail_activity_type"/>
+        <menuitem id="tickler_file_short_term_activity_gtd"
+                  name="Tickler File: Short Term"
+                  parent="config_activity_gtd"
+                  action="mail_activity_type"/>
+        <menuitem id="tickler_file_long_term_activity_gtd"
+                  name="Tickler File: Long Term"
+                  parent="config_activity_gtd"
+                  action="mail_activity_type"/>
+        <menuitem id="tickler_file_recurring_activity_gtd"
+                  name="Tickler File: Recurring"
+                  parent="config_activity_gtd"
                   action="mail_activity_type"/>
 	</data>
 </odoo>
