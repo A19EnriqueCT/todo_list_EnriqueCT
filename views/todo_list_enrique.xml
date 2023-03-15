@@ -15,7 +15,7 @@
                         <filter name="groupby_state"
                                 context="{'group_by' : 'state'}"
                                 string="State"/>
-                        <filter name="groupby_prioirity"
+                        <filter name="groupby_priority"
                                 context="{'group_by' : 'priority'}"
                                 string="Priority"/>
                     </group>

@@ -30,7 +30,7 @@ class MailActivity(models.Model):
         ('1', 'Important'),
         ('2', 'Very Important'),
         ('3', 'Urgent'),
-    ], default='0', index=True, store=True),
+    ], default='0', index=True, store=True)
     activity_gtd = fields.Selection(
         string="Activity GTD",
         selection=[
@@ -58,7 +58,7 @@ class MailActivity(models.Model):
     def action_done(self):
         """Function done button"""
         self.write({'state': 'done'})
-        if self.recurring:
+        if self.activity_gtd == 'tickler_file_recurring_tasks':
             self.env['mail.activity'].create({
                 'res_id': self.res_id,
                 'res_model_id': self.res_model_id.id,
