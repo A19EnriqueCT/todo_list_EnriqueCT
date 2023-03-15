@@ -38,7 +38,7 @@ class MailActivity(models.Model):
             ('list_incubator', "List: Incubator"),
             ('tickler_file_short_term', "Tickler File: Short Term"),
             ('tickler_file_long_term', "Tickler File: Long Term"),
-            ('tickler_file_recurring_tasks', "Tickler File: Recurring Tasks")])
+            ('tickler_file_recurring_tasks', "Tickler File: Recurring Tasks"),])
     state = fields.Selection([
         ('today', 'Today'),
         ('planned', 'Planned'),
@@ -102,7 +102,7 @@ class MailActivity(models.Model):
     def onchange_recurring(self):
         """ function for show new due date"""
         self.new_date = False
-        if self.activity_gtd=='tickler_file_recurring_tasks':
+        if self.activity_gtd == 'tickler_file_recurring_tasks':
             self.new_date = self.get_date()
 
     def action_date(self):
@@ -119,7 +119,7 @@ class MailActivity(models.Model):
                  'summary': rec.summary,
                  'priority': rec.priority,
                  'interval': rec.interval,
-                 'activity gtd': rec.activity_gtd,
+                 'activity_gtd': rec.activity_gtd,
                  'date_deadline': rec.new_date,
                  'new_date': rec.get_date(),
                  'activity_type_id': rec.activity_type_id.id,
