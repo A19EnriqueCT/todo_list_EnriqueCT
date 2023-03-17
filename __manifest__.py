@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "todolistGTD",
+    'name': "Todo List GTD",
 
     'summary': """
-        Módulo útil para organizar tus actividades según el modelo GTD.""",
+        Módulo útil para organizar las actividades de tu empresa según el modelo GTD.""",
 
     'description': """
         
