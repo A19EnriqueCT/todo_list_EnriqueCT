@@ -46,7 +46,7 @@
             <field name="name">mail.activity.kanban.inherit</field>
             <field name="model">mail.activity</field>
             <field name="arch" type="xml">
-                <kanban default_order="activity_gtd desc" default_group_by="activity_gtd"
+                <kanban default_order="activity_gtd" default_group_by="activity_gtd"
                         class="mail_activity_kanban_view" sample="1">
                     <templates>
                         <t t-name="kanban-box">

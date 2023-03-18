@@ -35,10 +35,10 @@ class MailActivity(models.Model):
         string="Activity GTD",
         selection=[
             ('list_executable', "Lista: Ejecutable"),
-            ('list_incubator', "Lista: Incubadora"),
+            ('tickler_file_recurring_tasks', "Tickler File: Tareas Recurrentes"),
             ('tickler_file_short_term', "Tickler File: Corto Plazo"),
             ('tickler_file_long_term', "Tickler File: Largo Plazo"),
-            ('tickler_file_recurring_tasks', "Tickler File: Tareas Recurrentes"),])
+            ('list_incubator', "Lista: Incubadora"),])
     state = fields.Selection([
         ('today', 'Hoy'),
         ('planned', 'Planificado'),
