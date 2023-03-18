@@ -27,9 +27,9 @@ class MailActivity(models.Model):
                                           'todo_list_EnriqueCT.general_activities'))
     priority = fields.Selection([
         ('0', 'Normal'),
-        ('1', 'Important'),
-        ('2', 'Very Important'),
-        ('3', 'Urgent'),
+        ('1', 'Importante'),
+        ('2', 'Muy Importante'),
+        ('3', 'Urgente'),
     ], default='0', index=True, store=True)
     activity_gtd = fields.Selection(
         string="Activity GTD",
