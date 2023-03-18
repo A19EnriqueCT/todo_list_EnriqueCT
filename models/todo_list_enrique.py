@@ -34,26 +34,26 @@ class MailActivity(models.Model):
     activity_gtd = fields.Selection(
         string="Activity GTD",
         selection=[
-            ('list_executable', "List: Executable"),
-            ('list_incubator', "List: Incubator"),
-            ('tickler_file_short_term', "Tickler File: Short Term"),
-            ('tickler_file_long_term', "Tickler File: Long Term"),
-            ('tickler_file_recurring_tasks', "Tickler File: Recurring Tasks"),])
+            ('list_executable', "Lista: Ejecutable"),
+            ('list_incubator', "Lista: Incubadora"),
+            ('tickler_file_short_term', "Tickler File: Corto Plazo"),
+            ('tickler_file_long_term', "Tickler File: Largo Plazo"),
+            ('tickler_file_recurring_tasks', "Tickler File: Tareas Recurrentes"),])
     state = fields.Selection([
-        ('today', 'Today'),
-        ('planned', 'Planned'),
-        ('done', 'Done'),
-        ('overdue', 'Expired'),
-        ('cancel', 'Cancelled'), ], 'State',
+        ('today', 'Hoy'),
+        ('planned', 'Planificado'),
+        ('done', 'Hecho'),
+        ('overdue', 'Caducado'),
+        ('cancel', 'Cancelado'), ], 'State',
         compute='_compute_state', store=True)
     interval = fields.Selection(
-        [('Daily', 'Daily'),
-         ('Weekly', 'Weekly'),
-         ('Monthly', 'Monthly'),
-         ('Quarterly', 'Quarterly'),
-         ('Yearly', 'Yearly')],
-        string='Recurring Interval', )
-    new_date = fields.Date(string="Next Due Date", store=True)
+        [('Daily', 'Diario'),
+         ('Weekly', 'Semanal'),
+         ('Monthly', 'Mensual'),
+         ('Quarterly', 'Trimestral'),
+         ('Yearly', 'Anual')],
+        string='Intervalo Recurrente', )
+    new_date = fields.Date(string="Siguiente fecha de vencimiento", store=True)
 
     def action_done(self):
         """Function done button"""

@@ -46,7 +46,7 @@
             <field name="name">mail.activity.kanban.inherit</field>
             <field name="model">mail.activity</field>
             <field name="arch" type="xml">
-                <kanban default_order="state desc" default_group_by="state"
+                <kanban default_order="activity_gtd desc" default_group_by="activity_gtd"
                         class="mail_activity_kanban_view" sample="1">
                     <templates>
                         <t t-name="kanban-box">
@@ -62,12 +62,12 @@
                                     <div class="dropdown-menu" role="menu">
                                         <t t-if="widget.editable">
                                             <a role="menuitem" type="edit"
-                                               class="dropdown-item">Edit
+                                               class="dropdown-item">Editar
                                             </a>
                                         </t>
                                         <t t-if="widget.deletable">
                                             <a role="menuitem" type="delete"
-                                               class="dropdown-item">Delete
+                                               class="dropdown-item">Borrar
                                             </a>
                                         </t>
                                     </div>
@@ -110,6 +110,7 @@
                     <field name="priority" widget="priority" class="mr-3"/>
                     <field name="summary"/>
                     <field name="activity_type_id"/>
+                    <field name="activity_gtd"/>
                     <field name="date_deadline"/>
                     <field name="res_model_id" optional="hide"/>
                     <field name="state"
@@ -183,15 +184,6 @@
                     Crea tu todo list bajo el modelo GTD
                 </p>
             </field>
-        </record>
-        <record id="action_activity_executable" model="ir.actions.act_window">
-            <field name="name">Lista: Ejecutable</field>
-            <field name="res_model">mail.activity</field>
-            <field name="view_mode">kanban,tree,form</field>
-            <field name="context"
-                   eval="{'default_res_model_id': ref('todo_list_EnriqueCT.model_activity_general')}"/>
-            <field name="search_view_id"
-                   ref="todo_list_EnriqueCT.mail_activity_model_view_search"/>
         </record>
         <record id="todo_list_EnriqueCT_action_view_kanban"
                 model="ir.actions.act_window.view">
