@@ -56,7 +56,7 @@ class MailActivity(models.Model):
     new_date = fields.Date(string="Siguiente fecha de vencimiento", store=True)
 
     def action_done(self):
-        """Function done button"""
+        """Función del botón Hecho"""
         self.write({'state': 'done'})
         if self.activity_gtd == 'tickler_file_recurring_tasks':
             self.env['mail.activity'].create({
@@ -73,7 +73,7 @@ class MailActivity(models.Model):
             })
 
     def get_date(self):
-        """ function for get new due date on new record"""
+        """ Función para obtener la nueva fecha de vencimiento en un nuevo registro"""
         date_deadline = self.new_date if self.new_date else self.date_deadline
         new_date = False
         if self.interval == 'Daily':
@@ -100,13 +100,13 @@ class MailActivity(models.Model):
 
     @api.onchange('interval', 'date_deadline')
     def onchange_recurring(self):
-        """ function for show new due date"""
+        """ Función para mostrar la nueva fecha de vencimiento"""
         self.new_date = False
         if self.activity_gtd == 'tickler_file_recurring_tasks':
             self.new_date = self.get_date()
 
     def action_date(self):
-        """ Function for automated actions for deadline"""
+        """ Función para acciones automáticas en la fecha de vencimiento"""
         today = fields.date.today()
         dates = self.env['mail.activity'].search(
             [('state', 'in', ['today', 'planned']),
@@ -128,7 +128,7 @@ class MailActivity(models.Model):
             rec.state = 'done'
 
     def action_cancel(self):
-        """ function for cancel button"""
+        """ Función para el botón Cancelar"""
         return self.write({'state': 'cancel'})
 
 
