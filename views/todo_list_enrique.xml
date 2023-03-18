@@ -15,6 +15,9 @@
                         <filter name="groupby_state"
                                 context="{'group_by' : 'state'}"
                                 string="State"/>
+                        <filter name="groupby_activity_gtd"
+                                string="Activity GTD"
+                                context="{'group_by': 'activity_gtd'}" />
                         <filter name="groupby_priority"
                                 context="{'group_by' : 'priority'}"
                                 string="Priority"/>
@@ -181,6 +184,15 @@
                 </p>
             </field>
         </record>
+        <record id="action_activity_executable" model="ir.actions.act_window">
+            <field name="name">Lista: Ejecutable</field>
+            <field name="res_model">mail.activity</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context"
+                   eval="{'default_res_model_id': ref('todo_list_EnriqueCT.model_activity_general')}"/>
+            <field name="search_view_id"
+                   ref="todo_list_EnriqueCT.mail_activity_model_view_search"/>
+        </record>
         <record id="todo_list_EnriqueCT_action_view_kanban"
                 model="ir.actions.act_window.view">
             <field name="sequence" eval="1"/>
@@ -221,26 +233,6 @@
 		<menuitem id="config_activity_gtd"
                   name="Actividades GTD"
                   parent="list_menu"
-                  action="mail_activity_type"/>
-        <menuitem id="executable_activity_gtd"
-                  name="Lista: Ejecutable"
-                  parent="config_activity_gtd"
-                  action="mail_activity_type"/>
-        <menuitem id="incubator_activity_gtd"
-                  name="Lista: Incubadora"
-                  parent="config_activity_gtd"
-                  action="mail_activity_type"/>
-        <menuitem id="tickler_file_short_term_activity_gtd"
-                  name="Tickler File: Corto Plazo"
-                  parent="config_activity_gtd"
-                  action="mail_activity_type"/>
-        <menuitem id="tickler_file_long_term_activity_gtd"
-                  name="Tickler File: Largo Plazo"
-                  parent="config_activity_gtd"
-                  action="mail_activity_type"/>
-        <menuitem id="tickler_file_recurring_activity_gtd"
-                  name="Tickler File: Recurrente"
-                  parent="config_activity_gtd"
-                  action="mail_activity_type"/>
+                  action="mail_activity_type" />
 	</data>
 </odoo>
