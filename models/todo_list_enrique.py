@@ -7,6 +7,8 @@ from datetime import timedelta
 from odoo import models, fields, api
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
+from collections import Counter
+
 
 class MailActivity(models.Model):
     _name = 'mail.activity'
@@ -38,7 +40,14 @@ class MailActivity(models.Model):
             ('tickler_file_recurring_tasks', "Tickler File: Tareas Recurrentes"),
             ('tickler_file_short_term', "Tickler File: Corto Plazo"),
             ('tickler_file_long_term', "Tickler File: Largo Plazo"),
-            ('list_incubator', "Lista: Incubadora"),])
+            ('list_incubator', "Lista: Incubadora"),
+            ('archived', "Archived"),])
+    number_of_activities = fields.Integer(
+        string='Number of Activities',
+        compute='_compute_activities',
+        store=False,
+        compute_sudo=True,
+    )
     state = fields.Selection([
         ('today', 'Hoy'),
         ('planned', 'Planificado'),
@@ -71,6 +80,7 @@ class MailActivity(models.Model):
                 'new_date': self.get_date(),
                 'user_id': self.user_id.id
             })
+        self.write({'activity_gtd': 'archived'})
 
     def get_date(self):
         """ Función para obtener la nueva fecha de vencimiento en un nuevo registro"""
@@ -96,13 +106,17 @@ class MailActivity(models.Model):
             new_date = (
                     date_deadline + timedelta(days=365)).strftime(
                 DEFAULT_SERVER_DATE_FORMAT)
+        elif self.activity_gtd == 'tickler_file_short_term':
+            new_date = (
+                    date_deadline + timedelta(days=1)).strftime(
+                DEFAULT_SERVER_DATE_FORMAT)
         return new_date
 
     @api.onchange('interval', 'date_deadline')
     def onchange_recurring(self):
         """ Función para mostrar la nueva fecha de vencimiento"""
         self.new_date = False
-        if self.activity_gtd == 'tickler_file_recurring_tasks':
+        if self.activity_gtd == 'tickler_file_recurring_tasks' or 'tickler_file_short_term':
             self.new_date = self.get_date()
 
     def action_date(self):
@@ -110,7 +124,7 @@ class MailActivity(models.Model):
         today = fields.date.today()
         dates = self.env['mail.activity'].search(
             [('state', 'in', ['today', 'planned']),
-             ('activity_gtd', '=', 'tickler_file_recurring_tasks'),
+             ('activity_gtd', 'in', ['tickler_file_recurring_tasks','tickler_file_short_term']),
              ('date_deadline', '=', today)])
         for rec in dates:
             self.env['mail.activity'].create(
@@ -119,17 +133,24 @@ class MailActivity(models.Model):
                  'summary': rec.summary,
                  'priority': rec.priority,
                  'interval': rec.interval,
-                 'activity_gtd': rec.activity_gtd,
                  'date_deadline': rec.new_date,
                  'new_date': rec.get_date(),
                  'activity_type_id': rec.activity_type_id.id,
                  'user_id': rec.user_id.id
                  })
             rec.state = 'done'
+            rec.activity_gtd = 'archived'
 
     def action_cancel(self):
         """ Función para el botón Cancelar"""
-        return self.write({'state': 'cancel'})
+        return self.write({'state': 'cancel'}, {'activity_gtd': 'archived'})
+    
+    @api.depends('activity_gtd')
+    def _compute_activities(self):
+        number_of_activities = 0
+        for activity in self:
+            if activity.activity_gtd:
+                number_of_activities += 1
 
 
 class ActivityGeneral(models.Model):
@@ -137,3 +158,12 @@ class ActivityGeneral(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char('Name')
+
+class ResUsers(models.Model):
+    _inherit = 'res.users'
+
+    scheduled_activities_ids = fields.One2many('mail.activity', 'user_id', string='Tareas programadas')
+    assigned_activies_ids = fields.Many2many(
+        'mail.activity',
+        string='Tareas Asignadas',
+    )

@@ -46,7 +46,7 @@
             <field name="name">mail.activity.kanban.inherit</field>
             <field name="model">mail.activity</field>
             <field name="arch" type="xml">
-                <kanban default_order="activity_gtd" default_group_by="activity_gtd"
+                <kanban default_order="activity_gtd desc" default_group_by="activity_gtd"
                         class="mail_activity_kanban_view" sample="1">
                     <templates>
                         <t t-name="kanban-box">
@@ -90,6 +90,11 @@
                                             <field name="user_id"
                                                    widget="many2one_avatar_user"/>
                                         </div>
+                                    </div>
+                                    <div class="o_kanban_record_date">
+                                        <strong>
+                                            <field name="date_deadline"/>
+                                        </strong>
                                     </div>
                                 </div>
                             </div>
@@ -217,14 +222,10 @@
         <menuitem id="todo_menu" name="Actividades"
                   parent="list_menu" sequence="5"/>
         <menuitem id="activity_menu" parent="list_menu"
-                  name="Actividades" action="action_activity" sequence="6"/>
+                  name="Actividades GTD" action="action_activity" sequence="6"/>
         <menuitem id="config_activity_types"
                   name="Tipos de Actividades"
                   parent="list_menu"
                   action="mail_activity_type"/>
-		<menuitem id="config_activity_gtd"
-                  name="Actividades GTD"
-                  parent="list_menu"
-                  action="mail_activity_type" />
 	</data>
 </odoo>
