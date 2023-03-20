@@ -42,9 +42,9 @@ class MailActivity(models.Model):
             ('tickler_file_long_term', "Tickler File: Largo Plazo"),
             ('list_incubator', "Lista: Incubadora"),
             ('archived', "Archived"),])
-    number_of_activities = fields.Integer(
-        string='Number of Activities',
-        compute='_compute_activities',
+    days_remaining = fields.Integer(
+        string='Días restantes',
+        compute='_compute_remaining_days',
         store=False,
         compute_sudo=True,
     )
@@ -145,12 +145,18 @@ class MailActivity(models.Model):
         """ Función para el botón Cancelar"""
         return self.write({'state': 'cancel'}, {'activity_gtd': 'archived'})
     
-    @api.depends('activity_gtd')
-    def _compute_activities(self):
-        number_of_activities = 0
-        for activity in self:
-            if activity.activity_gtd:
-                number_of_activities += 1
+    @api.depends('date_deadline')
+    def _compute_remaining_days(self):
+        today = fields.Date.today()
+        for request in self.filtered('date_deadline'):
+            if request.date_deadline:
+                delta = today - request.date_deadline
+                if delta.days < 0:
+                    request.days_remaining = abs(delta.days)
+                else:
+                    request.days_remaining = 0
+            else:
+                request.days_remaining = 0
 
 
 class ActivityGeneral(models.Model):

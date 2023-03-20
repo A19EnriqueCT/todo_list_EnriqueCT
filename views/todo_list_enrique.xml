@@ -96,6 +96,11 @@
                                             <field name="date_deadline"/>
                                         </strong>
                                     </div>
+                                    <div class="o_kanban_record_date">
+                                        <strong>
+                                            <field name="days_remaining"/> Días Restantes
+                                        </strong>
+                                    </div>
                                 </div>
                             </div>
                         </t>
