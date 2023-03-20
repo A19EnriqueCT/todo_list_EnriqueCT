@@ -7,9 +7,6 @@ from datetime import timedelta
 from odoo import models, fields, api
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
 
-from collections import Counter
-
-
 class MailActivity(models.Model):
     _name = 'mail.activity'
     _inherit = ['mail.activity', 'mail.thread']
