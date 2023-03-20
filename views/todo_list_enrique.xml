@@ -81,25 +81,24 @@
                                     <div>
                                         <field name="activity_type_id"/>
                                     </div>
-                                    <div class="o_kanban_record_bottom">
-                                        <div class="oe_kanban_bottom_left">
-                                            <field name="priority"
-                                                   widget="priority"/>
-                                        </div>
-                                        <div class="oe_kanban_bottom_right">
-                                            <field name="user_id"
-                                                   widget="many2one_avatar_user"/>
-                                        </div>
+                                    <div class="o_kanban_record_priority">
+                                        <field name="priority" widget="priority"/>
                                     </div>
                                     <div class="o_kanban_record_date">
                                         <strong>
                                             <field name="date_deadline"/>
                                         </strong>
                                     </div>
-                                    <div class="o_kanban_record_date">
-                                        <strong>
-                                            <field name="days_remaining"/> Días Restantes
-                                        </strong>
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <strong>
+                                                <field name="days_remaining"/> días restantes
+                                            </strong>
+                                        </div>
+                                        <div class="oe_kanban_bottom_right">
+                                            <field name="user_id"
+                                                   widget="many2one_avatar_user"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -122,12 +121,26 @@
                     <field name="activity_type_id"/>
                     <field name="activity_gtd"/>
                     <field name="date_deadline"/>
+                    <field name="days_remaining"/>
                     <field name="res_model_id" optional="hide"/>
                     <field name="state"
                            decoration-success="state == 'planned' or state == 'done'"
                            decoration-info="state == 'today' " widget="badge"
                            optional="show"/>
                 </tree>
+            </field>
+        </record>
+
+        <!--tree view for users-->
+        <record id="todo_list_EnriqueCT.users_tree" model="ir.ui.view">
+            <field name="name">res.users.tree</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="scheduled_activities_ids"/>
+                    <field name="assigned_activities_ids"/>
+                </xpath>
             </field>
         </record>
 
@@ -159,7 +172,6 @@
                                 <field name="res_id" invisible="1"/>
                                 <field name="res_model" invisible="1"/>
                                 <field name="res_model_id" invisible="1"/>
-
                             </group>
                             <group>
                                 <field name="date_deadline"/>
@@ -221,6 +233,12 @@
             <field name="res_model">mail.activity.type</field>
             <field name="view_mode">tree,form</field>
         </record>
+        <record id="todo_list_EnriqueCT_users_tree" model="ir.actions.act_window">
+            <field name="name">Usuarios</field>
+            <field name="res_model">res.users</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="todo_list_EnriqueCT.users_tree"/>
+        </record>
 
         <!--menuitem-->
         <menuitem id="list_menu" name="To Do GTD" sequence="10"/>
@@ -232,5 +250,9 @@
                   name="Tipos de Actividades"
                   parent="list_menu"
                   action="mail_activity_type"/>
+        <menuitem id="config_res_users"
+                  name="Usuarios"
+                  parent="list_menu"
+                  action="todo_list_EnriqueCT_users_tree"/>
 	</data>
 </odoo>

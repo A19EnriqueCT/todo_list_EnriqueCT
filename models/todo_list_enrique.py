@@ -169,7 +169,7 @@ class ResUsers(models.Model):
     _inherit = 'res.users'
 
     scheduled_activities_ids = fields.One2many('mail.activity', 'user_id', string='Tareas programadas')
-    assigned_activies_ids = fields.Many2many(
+    assigned_activities_ids = fields.Many2many(
         'mail.activity',
         string='Tareas Asignadas',
     )
