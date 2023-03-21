@@ -23,20 +23,37 @@
                                 string="Priority"/>
                     </group>
                     <!--filter views-->
-                    <filter string="My Activities"
+                    <filter string="Mis Actividades"
                             name="assigned_to_me"
                             domain="[('user_id', '=', uid)]"/>
-                    <filter invisible="0" string="Late Activities"
+                    <filter invisible="0" string="Actividades Terminadas"
                             name="activities_overdue"
                             domain="[('date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
-                            help="Show all records which has next action date is before today"/>
-                    <filter invisible="0" string="Today Activities"
+                            help="Muestra todos los registros cuya fecha de vencimiento sea anterior al día de hoy"/>
+                    <filter invisible="0" string="Actividades de Hoy"
                             name="activities_today"
                             domain="[('date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
-                    <filter invisible="0" string="Future Activities"
+                    <filter invisible="0" string="Actividades Futuras"
                             name="activities_upcoming_all"
-                            domain="[('date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))
-                        ]"/>
+                            domain="[('date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter invisible="0" string="Lista: Ejecutable"
+                            name="activities_executable"
+                            domain="[('activity_gtd', '=', 'list_executable')]"/>
+                    <filter invisible="0" string="Lista: Incubadora"
+                            name="activities_incubator"
+                            domain="[('activity_gtd', '=', 'list_incubator')]"/>
+                    <filter invisible="0" string="Tickler File: Short Term"
+                            name="activities_short_term"
+                            domain="[('activity_gtd', '=', 'tickler_file_short_term')]"/>
+                    <filter invisible="0" string="Tickler File: Long Term"
+                            name="activities_long_term"
+                            domain="[('activity_gtd', '=', 'tickler_file_long_term')]"/>
+                    <filter invisible="0" string="Tickler File: Recurring Tasks"
+                            name="activities_recurring_tasks"
+                            domain="[('activity_gtd', '=', 'tickler_file_recurring_tasks')]"/>
+                    <filter invisible="0" string="Archived"
+                            name="activities_archived"
+                            domain="[('activity_gtd', '=', 'archived')]"/>
                 </search>
             </field>
         </record>
