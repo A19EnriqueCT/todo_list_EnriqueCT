@@ -209,11 +209,26 @@
                 </form>
             </field>
         </record>
+
+        <!--calendar view-->
+        <record id="mail_activity_view_calendar" model="ir.ui.view">
+            <field name="name">mail.activity.view.calendar</field>
+            <field name="model">mail.activity</field>
+            <field name="arch" type="xml">
+                <calendar string="Vista Calendario" date_start="date_deadline" color="user_id" mode="month">
+                    <field name="summary"/>
+                    <field name="activity_gtd"/>
+                    <field name="priority"/>
+                </calendar>
+            </field>
+        </record>
+            
+
         <!--action mail activity-->
         <record id="action_activity" model="ir.actions.act_window">
             <field name="name">Actividad</field>
             <field name="res_model">mail.activity</field>
-            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_mode">kanban,tree,form,calendar</field>
             <field name="context"
                    eval="{'default_res_model_id': ref('model_activity_general')}"/>
             <field name="search_view_id"
